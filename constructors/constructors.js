@@ -22,3 +22,56 @@
  * This is how you would structure the game objects in an actual game
  * application in Unity or another similar framework.
  */
+
+ class NPC {
+  constructor(options) {
+    this.hp = options.hp;
+    this.strength = options.strength;
+    this.speed = options.speed;
+
+  }
+
+  destroy() {
+    console.log('game object removed')
+  }
+
+  getAttributes() {
+    return `${this.hp} ${this.strength} ${this.speed}`
+  }
+ }
+
+ class Humanoid extends NPC {
+  construtor(options) {
+    super(options);
+    this.name = options.name;
+    this.height = options.height;
+    this.sex = options.sex;
+  }
+  walk() {
+    console.log(`${this.name} walked`);
+  }
+ }
+
+ class Human extends Humanoid {
+   constructor(options) {
+     super(options);
+     this.occupation = options.occupation;
+     this.language = options.language;
+     this.clan = options.clan;
+   }
+   shootGun() {
+     console.log('bang!');
+   }
+ }
+
+const mage = new Human({
+  hp: 50,
+  strength: 10,
+  speed: 5,
+  height: 50,
+  name: 'lego'
+});
+
+mage.shootGun();
+mage.walk();
+mage.destroy();
